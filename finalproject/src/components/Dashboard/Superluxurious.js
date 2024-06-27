@@ -7,7 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import { useParams } from 'react-router-dom';
-
+import Footer from "./Footer.js"
 
 const Superluxurious = (car) => {
 
@@ -46,7 +46,8 @@ const Superluxurious = (car) => {
   
   const handleAddOne =  (car) => {
     const newStatus = sessionStorage.getItem("user")
-    const newcount = 1
+    if(window.confirm("Are you sure you want to rent a car?")){
+      const newcount = 1
       axios.put(`http://localhost:8888/car/${car.id}`, { ...car, user: newStatus })
       // axios.put(`http://localhost:8888/car/${car.id}`, { ...car, count: newcount })
       .then(() => {
@@ -61,14 +62,9 @@ const Superluxurious = (car) => {
         }
         return car;
       });
-   
-
-      
-
       setCars(updatedCars);
-
-  
   };
+    }
 
     // fratching the car items this use effect was do 
     useEffect(()=>{
@@ -127,7 +123,7 @@ return  <>
       
     </div>
     
-    
+    <Footer></Footer>
 
         </>
         

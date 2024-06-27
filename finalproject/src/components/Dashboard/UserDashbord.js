@@ -18,6 +18,7 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Navidator from './Navidator';
 
 
 const UserDashbord = () => {
@@ -49,6 +50,7 @@ const UserDashbord = () => {
   // useEffect(() => {
   //   fetchCars();
   // }, []);
+  
   
   const StyledBadge = styled(Badge)(({ theme }) => ({ 
 
@@ -89,13 +91,15 @@ const nav = useNavigate();
     {
       return <div class="container-fluid mt-5">
 
+<Navidator></Navidator>
+        <br/>
         <h1 style={{display:"inline"}}>Welcome you : &nbsp;</h1>
         {
         itemData.map((val, index) => (
           <b><h1 style={{display:"inline"}} className='mt-2'>{val.username}  </h1> </b>))
       }
       
-      <Link to="Selected"><IconButton aria-label="cart" style={{position:"absolute", top:"45px", right:"220px"}}>
+      <Link to="Selected"><IconButton aria-label="cart" style={{position:"absolute", top:"75px", right:"220px"}}>
         
       <StyledBadge badgeContent={numbercar} color="secondary">
       
@@ -105,7 +109,7 @@ const nav = useNavigate();
     </IconButton>
     </Link>
 
-      <div style={{position:"absolute",top:"20px",right:"30px"}}>
+      <div style={{position:"absolute",top:"50px",right:"30px"}}>
         
       <Button variant='contained' onClick={()=>logout()} className='mt-4' style={{background:"yellow",color:"black"}} >Logout</Button>
       </div>

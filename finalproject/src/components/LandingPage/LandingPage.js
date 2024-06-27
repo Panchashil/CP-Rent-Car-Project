@@ -24,6 +24,10 @@ import car11 from './images/car11.jpg';
 import car12 from './images/car12.jpg';
 
 
+import video1 from './images/video1.mp4';
+import video2 from './images/video2.mp4';
+import final from './images/final1.mp4';
+
 const carImages = [
   car1, car2, car3, car4, car5, car6, car7, car8, car9, car10, car11, car12
 ];
@@ -59,6 +63,39 @@ const Home = () => {
   );
 };
 
+const Carvideo = () => (
+
+  <div class="lightbox" data-mdb-lightbox-init>
+
+  <div class="row">
+
+    <div class="col-lg-6">
+
+    <video autoPlay loop muted class="w-100 mb-2 mb-md-4 shadow-1-strong rounded">
+     <source src={video1} type="video/mp4" />
+    </video>
+
+    <video autoPlay loop muted class="w-100 mb-2 mb-md-4 shadow-1-strong rounded">
+     <source src={video2} type="video/mp4" />
+</video>
+
+    <video autoPlay loop muted class="w-100 mb-2 mb-md-4 shadow-1-strong rounded">
+     <source src={video1} type="video/mp4" />
+</video>
+
+      </div>
+
+    <div class="col-lg-6">
+      
+    <video autoPlay loop muted class="w-100 shadow-1-strong rounded">
+     <source src={final} type="video/mp4" />
+</video>
+
+      
+    </div>
+ </div>
+</div>
+);
 const About = () => (
   <div id="about" className="about-section">
     <h2>About Our Company</h2>
@@ -345,6 +382,7 @@ const LandingPage = () => {
       </Drawer>
       <main className="content">
         <Home />
+        <Carvideo />
         <About />
         <Cars />
         <Contact />

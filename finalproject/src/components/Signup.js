@@ -16,6 +16,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useState } from 'react'
 
 
 const defaultTheme = createTheme();
@@ -27,26 +28,126 @@ const Signup = () => {
     
    }
 
+
+  //  const inputChangeHandler = (events)=>{
+  //   const {type,name,value} = events.target;
+  //   setItemData({...itemData,[name]:value});
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
+        
         // console.log({
         //   email: data.get('email'),
         //   password: data.get('password'),
         // });
-        const userdata = {
-          username: data.get("firstName")+" "+data.get("lastName"),
-          useremail: data.get("email"),
-          userpassword: data.get("password"),
-          username: data.get("username"),
-          phonenumber: data.get("phone_number"),
-          address: data.get("address"),
+
           
-        }
-        axios.post(`http://localhost:8888/users`,userdata);
-        window.alert("Added successfully");
-        nav('/login');
-      };
+    const userdata = {
+      username: data.get("firstName")+" "+data.get("lastName"),
+        useremail: data.get("email"),
+        userpassword: data.get("password"),
+        username: data.get("username"),
+        phonenumber: data.get("phone_number"),
+        address: data.get("address"),
+        checking : 0
+    }
+    
+  
+    const addRecord = (event)=>{
+        userdata.checking = 0
+        event.preventDefault();
+        window.alert(data.get("firstName"))
+        if(data.get("firstName").trim()===""){
+            window.alert("First Name is required");
+            userdata.checking=1
+            return false;
+          }
+        //   if(!itemData.first_name.trim().match('^[a-zA-Z]{3,20}$')){
+        //     window.alert("First Name contain only character min 20 and maxiumum of 20 characters");
+        //     itemData.checking=1
+        //     return false;
+        //   }
+        // if(itemData.Last_name.trim()===""){
+        //     window.alert("Last name is required");
+        //     itemData.checking=1
+        //     return false;
+        //   }
+        //   if(!itemData.Last_name.trim().match('^[a-zA-Z ]{3,20}$')){
+        //     window.alert("Last name contain only character min 20 and maxiumum of 20 characters");
+        //     itemData.checking=1
+        //     return false;
+        //   }
+        //   if(itemData.username.trim()===""){
+        //     window.alert("useraname is required");
+        //     itemData.checking=1
+        //     return false;
+        //   }
+        //   if(!itemData.first_name.trim().match('^[a-zA-Z0-9]{3,20}$')){
+        //     window.alert("username contain only character min 20 and maxiumum of 20 characters");
+        //     itemData.checking=1
+        //     return false;
+        //   }
+        //   if(!itemData.email.match('^[a-zA-Z0-9@.]{3,20}$')){
+        //     window.alert("Enter the correct email address");
+        //     itemData.checking=1
+        //     return false;
+        //   }
+        //   if(!itemData.phonenumber.match('^[0-9]{10}$')){
+        //     window.alert("Enter the correct contact number");
+        //     itemData.checking=1
+        //     return false;
+        //   }
+        //   if(itemData.city.trim()===""){
+        //     window.alert("City was required");
+        //     itemData.checking=1
+        //     return false;
+        //   }
+        //   if(!itemData.city.trim().match('^[a-zA-Z]{3,20}$')){
+        //     window.alert("Enter the correct city");
+        //     itemData.checking=1
+        //     return false;
+        //   }
+        //   if(itemData.password.trim()===""){
+        //     window.alert("password was is required");
+        //     itemData.checking=1
+        //     return false;
+        //   }
+        //   if(!itemData.password.trim().match('^[a-zA-Z0-9!@$%^&*]{3,20}$')){
+        //     window.alert("Password maximum length was 3 to 20");
+        //     itemData.checking=1
+        //     return false;
+        //   }
+        //   if(itemData.password===itemData.conform_password){
+        //     window.alert("select the car type");
+        //     itemData.checking=1
+        //     return false;
+        //   }
+
+          // window.alert(itemData.checking);
+          // if(itemData.checking===0){
+          //   if(window.confirm("do you want to adding this car")){
+          //       axios.post(`http://localhost:8888/users`,itemData);
+          //        window.alert("Added successfully");
+          //       nav('/login');
+          //   }   
+           
+          // }
+          
+    }}
+
+
+
+
+       
+          
+        // axios.post(`http://localhost:8888/users`,itemData);
+        // window.alert("Added successfully");
+        // nav('/login');
+      
+        
+        
 
     return (
       <ThemeProvider theme={defaultTheme}>

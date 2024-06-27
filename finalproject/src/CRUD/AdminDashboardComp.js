@@ -29,7 +29,7 @@ const AdminDashboardComp = () => {
     }).catch((error) => { })
   }
 
-<<<<<<< HEAD
+
   const deleteCar = (carid) => {
 
     if (window.confirm(`Do you want to delete the CAR:${carid}`)) {

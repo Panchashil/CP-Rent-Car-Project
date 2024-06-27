@@ -7,24 +7,81 @@ const UpdateCarComp = () => {
     const {id} = useParams();
     const nav = useNavigate()
     const [itemData,setItemData] = useState({
-        carid:"",
         carname:"",
+        price:"",
         drivingtype:"",
         carrank:"",
         carmodel:"",
         carimage:"",
+        user:"",
+        type:"",
+        checking:0
     });
 
     const inputChangeHandler = (events)=>{
             const {type,name,value} = events.target;
             setItemData({...itemData,[name]:value});
     }
+    
+    
+    
+    
     const updateRecord = (event)=>{
         event.preventDefault();
-        axios.put(`http://localhost:8888/car/${id}`,itemData).then(()=>{
-            window.alert("Record Updated Successsfully");
-            nav('/adminDashboard');
-        }).catch((error)=>{})
+        itemData.checking = 0
+        event.preventDefault();
+        if(itemData.carname.trim()===""){
+            window.alert("Car Name is required");
+            itemData.checking=1
+            return false;
+          }
+          if(!itemData.carname.trim().match('^[a-zA-Z1-9 ]{3,20}$')){
+            window.alert("Car Name must contain only character min-3 and Max-20");
+            itemData.checking=1
+            return false;
+          }
+          if(!itemData.price.match('^[0-9$]{3,20}$')){
+            window.alert("Enter the correct price");
+            itemData.checking=1
+            return false;
+          }
+          if(!itemData.carrank.match('^[0-9]{1,2}$')){
+            window.alert("Enter the car rank");
+            itemData.checking=1
+            return false;
+          }
+          if(!itemData.carmodel.match('^[0-9]{4,4}$')){
+            window.alert("Enter the correct Year of model");
+            itemData.checking=1
+            return false;
+          }
+          if(itemData.carimage.trim()===""){
+            window.alert("Car image is required");
+            itemData.checking=1
+            return false;
+          }
+          if(itemData.drivingtype.length==0){
+            window.alert("select the driving type");
+            itemData.checking=1
+            return false;
+          }
+          if(itemData.type.length==0){
+            window.alert("select the car type");
+            itemData.checking=1
+            return false;
+          }
+          if(itemData.checking===0){
+            if(window.confirm("are you sure you want to edit the car records")){
+                axios.put(`http://localhost:8888/car/${id}`,itemData).then(()=>{
+                    window.alert("Record Updated Successsfully");
+                    nav('/AdminDash');
+                }).catch((error)=>{})
+            }
+          }
+
+
+
+        
     }
     useEffect(()=>{
         axios.get(`http://localhost:8888/car/${id}`).then((res)=>{

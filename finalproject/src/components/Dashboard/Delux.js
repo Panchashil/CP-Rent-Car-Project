@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import "../Dashboard/dashbord.css"
 import { useParams } from 'react-router-dom';
+// import Navidator from './Navidator';
+import Footer from "./Footer.js"
 
 const CarDetails = (car) => {
 
@@ -45,9 +47,8 @@ const fetchCars = async () => {
 
 const handleAddOne =  (car) => {
   const newStatus = sessionStorage.getItem("user")
-  window.confirm(`adding ${car.carname} book?`)
-
-  const newcount = 1
+  if(window.confirm("Are you sure you want to rent a car?")){
+    const newcount = 1
     axios.put(`http://localhost:8888/car/${car.id}`, { ...car, user: newStatus })
     // axios.put(`http://localhost:8888/car/${car.id}`, { ...car, count: newcount })
     .then(() => {
@@ -62,14 +63,11 @@ const handleAddOne =  (car) => {
       }
       return car;
     });
- 
-
-    
-
     setCars(updatedCars);
-
-   
 };
+  }
+
+  
 
   // fratching the car items this use effect was do 
   useEffect(()=>{
@@ -103,7 +101,7 @@ const handleAddOne =  (car) => {
 
          {/* by using the session storage method for getting the username */}
 
-  
+
          <div className="container mt-5">
       <div className="row">
         {
@@ -124,7 +122,7 @@ const handleAddOne =  (car) => {
       </div>
     </div>
     
-
+<Footer></Footer>
         </>
         
 

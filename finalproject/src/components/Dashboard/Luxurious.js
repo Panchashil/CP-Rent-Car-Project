@@ -6,7 +6,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddIcon from '@mui/icons-material/Add';
 import { Link, useParams } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
-
+import Footer from './Footer';
 
 
 const CarDetails = (car) => {
@@ -44,9 +44,10 @@ const CarDetails = (car) => {
   
   const handleAddOne =  (car) => {
     const newStatus = sessionStorage.getItem("user")
-    const newcount = 1
-      axios.put(`http://localhost:8888/car/${car.id}`, { ...car, user:  sessionStorage.getItem("user") })
-      // axios.put(`http://localhost:8888/car/${car.id}`, { ...car, status: newcount })
+    if(window.confirm("Are you sure you want to rent a car?")){
+      const newcount = 1
+      axios.put(`http://localhost:8888/car/${car.id}`, { ...car, user: newStatus })
+      // axios.put(`http://localhost:8888/car/${car.id}`, { ...car, count: newcount })
       .then(() => {
         setItemData(itemData.map(item => item.id === car.id ? { ...item, user: newStatus } : item));
       })
@@ -59,14 +60,9 @@ const CarDetails = (car) => {
         }
         return car;
       });
-   
-
-      
-
       setCars(updatedCars);
-
-    
   };
+    }
 
     // fratching the car items this use effect was do 
     useEffect(()=>{
@@ -123,7 +119,9 @@ const CarDetails = (car) => {
             </div>
           </div>))}
       </div>
+      
     </div>
+    <Footer></Footer>
     
 
         </>
