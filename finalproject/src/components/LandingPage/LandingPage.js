@@ -115,9 +115,46 @@ const Cars = () => (
 
 const LandingPage = () => {
 
-  const [itemData,setItemData] = useState({
+  
+  
+  const Contact = () => (
+
+
+    
+
+
+
+    <div id="contact" className="contact-section">
+      <div className="contact-container">
+        <div className="map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093707!2d144.95373531531646!3d-37.81627977975171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577e8d7f8b69bdb!2sMelbourne%20CBD!5e0!3m2!1sen!2sau!4v1601918789243!5m2!1sen!2sau"
+            width="100%"
+            height="450"
+            frameBorder="0"
+            style={{ borderRadius: "30px" }}
+            allowFullScreen=""
+            aria-hidden="false"
+            tabIndex="0"
+  
+          ></iframe>
+        </div>
+        
+      </div>
+    </div>
+  );
+  
+
+
+    const nav = useNavigate();
+  
+   const reloadss = ()=>{
+    nav('login');
+   };
+
+   const [itemData,setItemData] = useState({
        
-    name:"",
+    Name:"",
     Mobile_Number:"",
     Email:"",
     Message:""
@@ -138,28 +175,13 @@ const LandingPage = () => {
   }
 
 
-  const Contact = () => (
-    <div id="contact" className="contact-section">
-      <div className="contact-container">
-        <div className="map">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093707!2d144.95373531531646!3d-37.81627977975171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577e8d7f8b69bdb!2sMelbourne%20CBD!5e0!3m2!1sen!2sau!4v1601918789243!5m2!1sen!2sau"
-            width="100%"
-            height="450"
-            frameBorder="0"
-            style={{ borderRadius: "30px" }}
-            allowFullScreen=""
-            aria-hidden="false"
-            tabIndex="0"
   
-          ></iframe>
-        </div>
-        <div className="enquiry-form">
+    <div className="enquiry-form">
           <h2>Contact Us</h2>
           <form onSubmit={addRecord}>
             <div className="form-group">
               <label>Name</label>
-              <input type="text" placeholder='Enter your Name' name="name" onChange={inputChangeHandler} value={itemData.name} className="form-control"  />
+              <input type="text" placeholder='Enter your Name' name="Name" onChange={inputChangeHandler} value={itemData.Name} className="form-control" required  />
             </div>
             <div className="form-group">
               <label>Mobile Number</label>
@@ -176,27 +198,16 @@ const LandingPage = () => {
             <button type="submit" className="btn btn-primary">Submit</button>
           </form>
         </div>
-      </div>
-    </div>
-  );
   
 
-
-    const nav = useNavigate();
-   const admin = ()=>{
-    nav('/adminlogin');
-   };
-   const reloadss = ()=>{
-    nav('login');
-   };
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  // useEffect(() => {
+  //   const handleResize = () => setIsMobile(window.innerWidth < 768);
+  //   window.addEventListener('resize', handleResize);
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, []);
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
