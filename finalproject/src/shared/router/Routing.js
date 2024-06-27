@@ -24,27 +24,26 @@ import PageNotFound from "../../components/PageNotFound";
 import LandingPage from "../../components/LandingPage/LandingPage";
 import AdminComp from "../../components/AdminComp";
 import ProtectedRouting from "./protectedRouting";
+import AdminDash from "../../CRUD/AdminDash";
+import UserDetails from "../../CRUD/UserDetails";
+import BookedCar from "../../CRUD/BookedCar";
 const router = createBrowserRouter([
-//     { path: "", element: <LoginComp /> },
-//   { path: "login", element: <LoginComp /> },
 
-
-
-  // {path:"addCar",element:<ProtectedRouting Component={AddCarComp}></ProtectedRouting>},
-  // {path:"updateCar/:id",element:<ProtectedRouting Component={UpdateCarComp}></ProtectedRouting>},
-   {path:"adminDashboard",element:<ProtectedRouting Component={AdminDashboardComp}></ProtectedRouting>,children:[
+  {path:"AdminDash" , element:<AdminDash></AdminDash>,children:[
     {path:"",element:<AdminDashboardComp></AdminDashboardComp>},
     {path:"addCar",element:<AddCarComp></AddCarComp>},
+    {path:"userDetails",element:<UserDetails></UserDetails>},
     {path:"updateCar/:id",element:<UpdateCarComp></UpdateCarComp>},
-         ]},
-
+    {path:"bookedcar",element:<BookedCar></BookedCar>},
+  ]},
+   
 
  {path:"addCar",element:<AddCarComp></AddCarComp>},
- //{path:"adminDashboard",element:<AdminDashboardComp></AdminDashboardComp>},
+
     {path:"updateCar/:id",element:<UpdateCarComp></UpdateCarComp>},
 
 
-// {path:"",element:<LandingPage/>},
+
   {path:"",element:<LandingPage/>},
   {path:"login",element:<LoginComp/>},
     {path:"signup",element:<Signup/>},
@@ -65,17 +64,7 @@ const router = createBrowserRouter([
 
 
 
-  // {path:"addCar",element:<AddCarComp></AddCarComp>},
-  // {path:"updateCar/:id",element:<UpdateCarComp></UpdateCarComp>},
-  // {path:"adminDashboard",element:<AdminDashboardComp></AdminDashboardComp>,children:[
-  // {path:"addCar",element:<AddCarComp></AddCarComp>},
 
-
-
-
-
-// {path:"dashboard",element:<Esware></Esware>}
-// {path:"dashboard",element:<Dashboards/> esware},
 
 
   

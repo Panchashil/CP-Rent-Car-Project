@@ -10,15 +10,6 @@
       "avatar": "https://w0.peakpx.com/wallpaper/670/410/HD-wallpaper-light-yagami-art-facial-expression-anime-deathnote-anime-deathnote-deathnote-l-kira-thumbnail.jpg"
     },
     {
-      "id": "2",
-      "username": "basil",
-      "useremail": "basil123@gmail.com",
-      "userpassword": "basil123",
-      "carname": "tata-vitarabreeza",
-      "carprice": 7000,
-      "avatar": "https://i1.sndcdn.com/artworks-mXLUFLDNlSw6KbE0-0SuQHA-t500x500.jpg"
-    },
-    {
       "id": "3",
       "username": "siva",
       "useremail": "siva123@gmail.com",
@@ -54,21 +45,6 @@
       "carprice": ""
     },
     {
-      "id": "ab1d",
-      "carname": "mahindra-XUV",
-      "carimage": "https://stimg.cardekho.com/images/carexteriorimages/930x620/Mahindra/XUV700/10789/1705388477954/front-left-side-47.jpg",
-      "carrank": 8,
-      "carmodel": 2020,
-      "drivingtype": "manual"
-    },
-    {
-      "id": "2",
-      "carname": "tata-vitarabreeza",
-      "carimage": "https://stimg.cardekho.com/images/carexteriorimages/930x620/Maruti/Brezza/10388/1694424068944/front-left-side-47.jpg",
-      "carrank": 6,
-      "carmodel": 2022
-    },
-    {
       "id": "3e0c",
       "username": "basil ahamed",
       "useremail": "basilahamed111@gmail.com",
@@ -81,15 +57,6 @@
       "useremail": "victor@gmail.com",
       "userpassword": "victor123",
       "id": "fceb"
-    },
-    {
-      "id": "388f",
-      "username": "final project",
-      "useremail": "final@gmail.com",
-      "userpassword": "final",
-      "carname": "",
-      "carprice": "",
-      "avatar": "https://i1.sndcdn.com/artworks-mXLUFLDNlSw6KbE0-0SuQHA-t500x500.jpg"
     }
   ],
   "car": [
@@ -102,9 +69,9 @@
       "carmodel": "2025",
       "carimage": "https://english.cdn.zeenews.com/sites/default/files/2023/08/24/1268665-nissan-gtr-nismo-gt3.jpg",
       "type": "luxurious",
-      "status": "NotBooked",
+      "status": "Booked",
       "user": "basilahamed46@gmail.com",
-      "count": 0
+      "count": "NotBooked"
     },
     {
       "id": "17a2",
@@ -116,7 +83,7 @@
       "carimage": "https://global.toyota/pages/news/images/2022/10/28/1700/001.jpg",
       "type": "luxurious",
       "status": "Booked",
-      "user": "basilahamed46@gmail.com",
+      "user": "siva123@gmail.com",
       "count": 1
     },
     {
@@ -129,7 +96,7 @@
       "carimage": "https://upload.wikimedia.org/wikipedia/commons/0/00/BMW_G07_1X7A1696.jpg",
       "type": "luxurious",
       "status": "Not-Booked",
-      "user": "",
+      "user": "siva123@gmail.com",
       "count": "NotBooked"
     },
     {
@@ -142,7 +109,8 @@
       "carimage": "https://di-uploads-pod12.dealerinspire.com/beavertonkiaredesign/uploads/2023/07/photo-of-a-red-2023-Kia-EV6-electric-car.jpg",
       "type": "delux",
       "status": "Not-Booked",
-      "user": ""
+      "user": "",
+      "count": "NotBooked"
     },
     {
       "id": "100a",
@@ -155,7 +123,7 @@
       "user": "basilahamed46@gmail.com",
       "type": "suplux",
       "status": "Not-Booked",
-      "count": 1
+      "count": "NotBooked"
     },
     {
       "id": "be83",
@@ -167,7 +135,8 @@
       "carimage": "https://www.motorbeam.com/wp-content/uploads/Jaguar-Electric-Sedan-Rendering.jpg",
       "user": "",
       "type": "suplux",
-      "status": "Booked"
+      "status": "Booked",
+      "count": "NotBooked"
     },
     {
       "id": "7614",
@@ -179,7 +148,8 @@
       "carimage": "https://cdn.arstechnica.net/wp-content/uploads/2024/03/2025-Porsche-Panamera-first-drive-1-640x480.jpg",
       "user": "basilahamed46@gmail.com",
       "type": "suplux",
-      "status": "Booked"
+      "status": "Booked",
+      "count": "NotBooked"
     },
     {
       "id": "c48c",
@@ -191,7 +161,8 @@
       "carimage": "https://www.topgear.com/sites/default/files/news-listicle/image/413extreme-silver-33-1.jpg?w=1290&h=726",
       "user": "",
       "type": "suplux",
-      "status": "Not-Booked"
+      "status": "Not-Booked",
+      "count": "NotBooked"
     },
     {
       "id": "aeca",
@@ -203,7 +174,8 @@
       "carimage": "https://www.topgear.com/sites/default/files/news-listicle/image/buyers_guide_-_rolls_royce_wraith_2014_-_front_quarter_2.jpg?w=1290&h=726",
       "user": "basilahamed46@gmail.com",
       "type": "suplux",
-      "status": "Booked"
+      "status": "Booked",
+      "count": "NotBooked"
     },
     {
       "id": "f740",
@@ -249,7 +221,7 @@
       "carrank": "10",
       "carmodel": "2023",
       "carimage": "https://hips.hearstapps.com/toc.h-cdn.co/assets/16/14/3200x2136/1971-lamborghini-miura-sv_1.jpg?resize=980:*",
-      "user": "basilahamed46@gmail.com",
+      "user": "siva123@gmail.com",
       "type": "delux",
       "status": "Booked",
       "count": 1
@@ -347,7 +319,7 @@
       "carrank": "10",
       "carmodel": "2024",
       "carimage": "https://tmna.aemassets.toyota.com/is/image/toyota/lexus/images/models/rcf/2024/hero/Lexus-RCF-hero-modelpage-mobile-960x1109-LEX-RCF-MY23-0064.jpg?wid=960&hei=1109",
-      "user": "",
+      "user": "basilahamed46@gmail.com",
       "type": "sports",
       "status": "Not-Booked",
       "count": "NotBooked"
