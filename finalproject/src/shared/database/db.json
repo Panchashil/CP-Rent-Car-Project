@@ -70,8 +70,8 @@
       "carimage": "https://english.cdn.zeenews.com/sites/default/files/2023/08/24/1268665-nissan-gtr-nismo-gt3.jpg",
       "type": "luxurious",
       "status": "Booked",
-      "user": "basilahamed46@gmail.com",
-      "count": "NotBooked"
+      "user": "siva123@gmail.com",
+      "count": 1
     },
     {
       "id": "17a2",
@@ -97,7 +97,7 @@
       "type": "luxurious",
       "status": "Not-Booked",
       "user": "siva123@gmail.com",
-      "count": "NotBooked"
+      "count": 1
     },
     {
       "id": "9d21",

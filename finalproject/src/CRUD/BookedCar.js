@@ -6,6 +6,8 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
+import { Sync } from '@mui/icons-material';
+import UserDashbord from '../components/Dashboard/UserDashbord';
 
 const BookedCar = () => {
 
@@ -18,8 +20,9 @@ const BookedCar = () => {
 
   useEffect(() => {
     fetchCars();
+   
   }, []);
-
+ 
   const fetchCars = async () => {
     try {
       let userdata = sessionStorage.getItem('user'); 
@@ -33,12 +36,19 @@ const BookedCar = () => {
       console.error('Error fetching cars:', error);
     }
   };
+ 
 
     
   return  <>
 
         {/* by using the session storage method for getting the username */}
+        <div>
+           
+                <button className='btn btn-success' onClick={()=>fetchCars}> Booked</button>
+                <button className='btn btn-success' >Requested</button>
+            </div>
         <div className="container mt-5">
+           
       <div className="row">{
 
         cars.map((val, index) => (
@@ -47,7 +57,7 @@ const BookedCar = () => {
               <img src={val.carimage} className="card-img-top" alt={val.name} style={{height:"300px"}} />
               <div className="card-body">
                 <h5 className="card-title">{val.carname}</h5>
-                <p className="card-text">Booked by: <strong>  {val.user} </strong></p>
+                <p className="card-text">Requested by: <strong>  {val.user} </strong></p>
                 {/* <button key={users.id} onClick={() => handleAddOne(val)} className="btn btn-primary float-left">{val.price} Only/-  </button>  */}
               </div>  
               
