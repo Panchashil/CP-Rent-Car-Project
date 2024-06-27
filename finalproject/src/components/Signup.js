@@ -23,7 +23,8 @@ const defaultTheme = createTheme();
 const Signup = () => {
   const nav =useNavigate();
    const redirect = ()=>{
-    nav('/login');
+    nav("/login")
+    
    }
 
     const handleSubmit = (event) => {
@@ -35,13 +36,16 @@ const Signup = () => {
         // });
         const userdata = {
           username: data.get("firstName")+" "+data.get("lastName"),
-        useremail: data.get("email"),
+          useremail: data.get("email"),
           userpassword: data.get("password"),
-          carname: "",
-          carprice: ""
+          username: data.get("username"),
+          phonenumber: data.get("phone_number"),
+          address: data.get("address"),
+          
         }
         axios.post(`http://localhost:8888/users`,userdata);
         window.alert("Added successfully");
+        nav('/login');
       };
 
     return (
@@ -62,7 +66,7 @@ const Signup = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" Validate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -89,10 +93,40 @@ const Signup = () => {
                 <TextField
                   required
                   fullWidth
+                  id="username"
+                  label="Username"
+                  name="username"
+                  autoComplete="username"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="phone_number"
+                  label="Phone Number"
+                  name="phonenumber"
+                  autoComplete="phonenumber"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="address"
+                  label="City"
+                  name="address"
+                  autoComplete="address"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -107,9 +141,13 @@ const Signup = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+                <TextField
+                  required
+                  fullWidth
+                  name="conform_Password"
+                  label="conform_Password"
+                  type="password"
+                  id="conform_password"
                 />
               </Grid>
             </Grid>
@@ -118,17 +156,19 @@ const Signup = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={()=>redirect()}
             >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
+            <br/>
+          </Box>
+          <Grid container justifyContent="flex-end"  onClick={()=>redirect()}>
               <Grid item>
-                <Link component="button" variant="body2" onClick={()=>redirect()}>
+                <Link component="button" variant="body2" >
                   Already have an account? Sign in
                 </Link>
               </Grid>
             </Grid>
-          </Box>
         </Box>
         {/* <Copyright sx={{ mt: 5 }} /> */}
       </Container>
