@@ -12,6 +12,9 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '@mui/material';
 
+import Alert from '@mui/material/Alert';
+import CheckIcon from '@mui/icons-material/Check';
+
 const UserDashbord = () => {
 const nav = useNavigate();
    const logout = ()=>{
@@ -54,7 +57,7 @@ const nav = useNavigate();
          <Link to="Sports"> <button className='btn btn-warning' id='button-73'> <a class="navbar-brand text-dark" href="#">Sports Car</a></button></Link>
          <Link to="delux">  <button className='btn btn-warning ' id='button-73'> <a class="navbar-brand text-dark" href="#">Vintage Car</a></button></Link>
          <Link to="superlux"> <button className='btn btn-warning  ' id='button-73' > <a class="navbar-brand text-dark" href="#">superlux car</a></button></Link>
-         <Link to="Selected"> <button className='btn btn-warning ' id='button-73'> <a class="navbar-brand text-dark" href="#">Selected Cars</a></button> </Link>
+         {/* <Link to="Selected"> <button className='btn btn-warning ' id='button-73'> <a class="navbar-brand text-dark" href="#">Selected Cars</a></button> </Link> */}
          <Link to="userinfo"> <button className='btn btn-warning ' id='button-73'> <a class="navbar-brand text-dark" href="#">User Info</a></button> </Link>
         </div>
       </nav>
