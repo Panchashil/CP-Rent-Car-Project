@@ -23,7 +23,7 @@ const defaultTheme = createTheme();
 const Signup = () => {
   const nav =useNavigate();
    const redirect = ()=>{
-    nav('/login');
+    
    }
 
     const handleSubmit = (event) => {
@@ -42,6 +42,7 @@ const Signup = () => {
         }
         axios.post(`http://localhost:8888/users`,userdata);
         window.alert("Added successfully");
+        nav('/login');
       };
 
     return (
@@ -118,12 +119,13 @@ const Signup = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={()=>redirect()}
             >
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link component="button" variant="body2" onClick={()=>redirect()}>
+                <Link component="button" variant="body2" >
                   Already have an account? Sign in
                 </Link>
               </Grid>

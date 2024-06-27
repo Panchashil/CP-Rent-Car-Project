@@ -15,8 +15,11 @@ import { Button } from '@mui/material';
 const UserDashbord = () => {
 const nav = useNavigate();
    const logout = ()=>{
-    sessionStorage.removeItem('user');
-    nav('/');
+    if(window.confirm("are you want to login?")){
+      sessionStorage.removeItem('user');
+      nav('/');
+    }
+  
    };
    
 

@@ -7,6 +7,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import './LandingPage.css';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 
 import logo from './images/logo.jpg';
 import car1 from './images/car1.jpg';
@@ -27,6 +28,15 @@ const carImages = [
   car1, car2, car3, car4, car5, car6, car7, car8, car9, car10, car11, car12
 ];
 
+
+
+
+
+
+
+
+
+
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const intervalRef = useRef(null);
@@ -35,6 +45,8 @@ const Home = () => {
     startAutoSlide();
     return () => clearInterval(intervalRef.current);
   }, []);
+
+  
 
   const startAutoSlide = () => {
     intervalRef.current = setInterval(() => {
@@ -100,49 +112,75 @@ const Cars = () => (
   </div>
 );
 
-const Contact = () => (
-  <div id="contact" className="contact-section">
-    <div className="contact-container">
-      <div className="map">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093707!2d144.95373531531646!3d-37.81627977975171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577e8d7f8b69bdb!2sMelbourne%20CBD!5e0!3m2!1sen!2sau!4v1601918789243!5m2!1sen!2sau"
-          width="100%"
-          height="450"
-          frameBorder="0"
-          style={{ borderRadius: "30px" }}
-          allowFullScreen=""
-          aria-hidden="false"
-          tabIndex="0"
-
-        ></iframe>
-      </div>
-      <div className="enquiry-form">
-        <h2>Contact Us</h2>
-        <form>
-          <div className="form-group">
-            <label>Name</label>
-            <input type="text" placeholder='Enter your Name' className="form-control"  />
-          </div>
-          <div className="form-group">
-            <label>Mobile Number</label>
-            <input type="text" placeholder='Enter your Mobile.No' className="form-control" />
-          </div>
-          <div className="form-group">
-            <label>Email</label>
-            <input type="email" placeholder='Enter your Mail' className="form-control" />
-          </div>
-          <div className="form-group">
-            <label>Message</label>
-            <textarea className="form-control" placeholder='Your Experience with us'></textarea>
-          </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
-      </div>
-    </div>
-  </div>
-);
 
 const LandingPage = () => {
+
+  const [itemData,setItemData] = useState({
+       
+    name:"",
+    Mobile_Number:"",
+    Email:"",
+    Message:""
+  
+  });
+  
+
+  const inputChangeHandler = (events)=>{
+    const {type,name,value} = events.target;
+    setItemData({...itemData,[name]:value});
+  }
+  
+  const addRecord = (event)=>{
+    event.preventDefault();
+    axios.post(`http://localhost:8888/contact`,itemData).then(()=>{
+        window.alert("Feedback Added Successsfully");
+    }).catch((error)=>{})
+  }
+
+
+  const Contact = () => (
+    <div id="contact" className="contact-section">
+      <div className="contact-container">
+        <div className="map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093707!2d144.95373531531646!3d-37.81627977975171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577e8d7f8b69bdb!2sMelbourne%20CBD!5e0!3m2!1sen!2sau!4v1601918789243!5m2!1sen!2sau"
+            width="100%"
+            height="450"
+            frameBorder="0"
+            style={{ borderRadius: "30px" }}
+            allowFullScreen=""
+            aria-hidden="false"
+            tabIndex="0"
+  
+          ></iframe>
+        </div>
+        <div className="enquiry-form">
+          <h2>Contact Us</h2>
+          <form onSubmit={addRecord}>
+            <div className="form-group">
+              <label>Name</label>
+              <input type="text" placeholder='Enter your Name' name="name" onChange={inputChangeHandler} value={itemData.name} className="form-control"  />
+            </div>
+            <div className="form-group">
+              <label>Mobile Number</label>
+              <input type="text" placeholder='Enter your Mobile.No' name="Mobile_number" onChange={inputChangeHandler} value={itemData.Mobile_Number} className="form-control" />
+            </div>
+            <div className="form-group">
+              <label>Email</label>
+              <input type="email" placeholder='Enter your Mail' name="Email" onChange={inputChangeHandler} value={itemData.Email} className="form-control" />
+            </div>
+            <div className="form-group">
+              <label>Message</label>
+              <textarea className="form-control" name="Message" onChange={inputChangeHandler} value={itemData.Message} placeholder='Your Experience with us'></textarea>
+            </div>
+            <button type="submit" className="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+  
+
 
     const nav = useNavigate();
    const admin = ()=>{

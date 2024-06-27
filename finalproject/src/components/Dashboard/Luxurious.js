@@ -37,7 +37,6 @@ const CarDetails = (car) => {
       const data = await response.json();
       setCars(data);
     } catch (error) {
-      console.error('Error fetching cars:', error);
     }
   };
 
