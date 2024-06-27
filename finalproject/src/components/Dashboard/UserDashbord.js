@@ -14,8 +14,53 @@ import { Button } from '@mui/material';
 
 import Alert from '@mui/material/Alert';
 import CheckIcon from '@mui/icons-material/Check';
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
 
 const UserDashbord = () => {
+
+
+  const [cars, setCars] = useState([]);
+  const [numbercar, setnumber] = useState([]);
+
+  useEffect(() => {
+    fetchCars();
+  });
+
+  const fetchCars = async () => {
+    try {
+      let userdata = sessionStorage.getItem('user'); 
+      const response = await fetch(`http://localhost:8888/car?user=${userdata}`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch cars');
+      }
+      const data = await response.json();
+      setCars(data);
+      setnumber(data.length)
+    } catch (error) {
+      console.error('Error fetching cars:', error);
+    }
+  };
+
+  // useEffect(() => {
+  //   fetchCars();
+  // }, []);
+  
+  const StyledBadge = styled(Badge)(({ theme }) => ({ 
+
+    '& .MuiBadge-badge': {
+      right: -3,
+      top: 5,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: '0 4px',
+    },
+  }));
+
+  
 const nav = useNavigate();
    const logout = ()=>{
     if(window.confirm("are you want to login?")){
@@ -43,12 +88,25 @@ const nav = useNavigate();
   }
     {
       return <div class="container-fluid mt-5">
+
         <h1 style={{display:"inline"}}>Welcome you : &nbsp;</h1>
         {
         itemData.map((val, index) => (
           <b><h1 style={{display:"inline"}} className='mt-2'>{val.username}  </h1> </b>))
       }
+      
+      <Link to="Selected"><IconButton aria-label="cart" style={{position:"absolute", top:"45px", right:"220px"}}>
+        
+      <StyledBadge badgeContent={numbercar} color="secondary">
+      
+        <ShoppingCartIcon />
+        
+      </StyledBadge>
+    </IconButton>
+    </Link>
+
       <div style={{position:"absolute",top:"20px",right:"30px"}}>
+        
       <Button variant='contained' onClick={()=>logout()} className='mt-4' style={{background:"yellow",color:"black"}} >Logout</Button>
       </div>
       <nav class="navbars  mt-5">
