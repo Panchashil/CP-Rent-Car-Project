@@ -19,7 +19,7 @@ import { Outlet } from 'react-router-dom';
 const defaultTheme = createTheme();
 
 
-const LoginComp = () => {
+const Testing = () => {
    const nav = useNavigate();
    const redirect = ()=>{
     nav('/signup');
@@ -31,8 +31,22 @@ const LoginComp = () => {
    const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    let email =data.get('email');
-    let password=data.get('password');
+    let email = ""
+    let password = ""
+    if(data.get("email").trim()===""){
+        window.alert("write a username")
+        return false
+    }
+    else{
+        email = data.get('email');
+    }
+    if(data.get("password").trim()===""){
+        window.alert("Password Field was required")
+        return false
+    }
+    else{
+        password = data.get('password');
+    }
     axios.get("http://localhost:8888/users").then((res)=>{
         let usersData=res.data;
        const data =usersData.filter((val)=>{return val.useremail===email && val.userpassword===password});
@@ -125,4 +139,4 @@ nav("/adminDashboard");
   );
 }
 
-export default LoginComp
+export default Testing

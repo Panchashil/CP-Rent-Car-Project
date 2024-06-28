@@ -67,7 +67,6 @@ const AddCarComp = () => {
           itemData.checking=1
           return false;
         }
-        window.alert(itemData.checking);
         if(itemData.checking===0){
           if(window.confirm("do you want to adding this car")){
               axios.post(`http://localhost:8888/car`,itemData).then(()=>{

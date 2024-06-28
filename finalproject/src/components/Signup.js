@@ -24,127 +24,123 @@ const defaultTheme = createTheme();
 const Signup = () => {
   const nav =useNavigate();
    const redirect = ()=>{
-    nav("/login")
-    
+   
    }
-
-
-  //  const inputChangeHandler = (events)=>{
-  //   const {type,name,value} = events.target;
-  //   setItemData({...itemData,[name]:value});
-
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        
-        // console.log({
-        //   email: data.get('email'),
-        //   password: data.get('password'),
-        // });
-
-          
-    const userdata = {
-      username: data.get("firstName")+" "+data.get("lastName"),
-        useremail: data.get("email"),
-        userpassword: data.get("password"),
-        username: data.get("username"),
-        phonenumber: data.get("phone_number"),
-        address: data.get("address"),
-        checking : 0
-    }
-    
-  
-    const addRecord = (event)=>{
-        userdata.checking = 0
-        event.preventDefault();
-        window.alert(data.get("firstName"))
+        let checking =0
         if(data.get("firstName").trim()===""){
-            window.alert("First Name is required");
-            userdata.checking=1
-            return false;
+          window.alert("First Name is required");
+          checking=1
+          return false;
+        }
+        if(!data.get("firstName").trim().match('^[a-zA-Z]{3,20}$')){
+          window.alert("First Name contain only character min 20 and maxiumum of 20 characters");
+          checking=1
+          return false;
+        }
+        else{
+          
+        }
+      if(data.get("lastName").trim()===""){
+          window.alert("Last name is required");
+          checking=1
+          return false;
+        }
+        if(!data.get("lastName").trim().match('^[a-zA-Z ]{3,20}$')){
+          window.alert("Last name contain only character min 20 and maxiumum of 20 characters");
+          checking=1
+          return false;
+        }
+        if(data.get("username").trim()===""){
+          window.alert("useraname is required");
+          checking=1
+          return false;
+        }
+        if(!data.get("username").trim().match('^[a-zA-Z0-9]{3,20}$')){
+          window.alert("username contain only character min 20 and maxiumum of 20 characters");
+          checking=1
+          return false;
+        }
+        if(data.get("email").trim()===""){
+          window.alert("Email is required");
+          checking=1
+          return false;
+        }
+        if(!data.get("email").match('^[a-zA-Z0-9@.]{3,50}$')){
+          window.alert("email contain only character");
+          checking=1
+          return false;
+        }
+        if(data.get("email")===axios.get(`http://localhost:8888/users/useremail?=${data.get('email')}`)){
+          window.alert("email contain only character");
+          checking=1
+          return false;
+        }
+        if(!data.get("phone").trim()===""){
+          window.alert("Enter the correct contact number");
+          checking=1
+          return false;
+        }
+        if(!data.get("phone").trim().match(`^[0-9]{10}$`)){
+          window.alert("Enter the correct contact number");
+          checking=1
+          return false;
+        }
+        if(data.get("address").trim()===""){
+          window.alert("City was required");
+          checking=1
+          return false;
+        }
+        if(!data.get("address").trim().match('^[a-zA-Z]{3,20}$')){
+          window.alert("Enter the correct city");
+          checking=1
+          return false;
+        }
+        if(data.get("password").trim()===""){
+          window.alert("password was is required");
+          checking=1
+          return false;
+        }
+        if(!data.get("password").trim().match('^[a-zA-Z0-9!@$%^&*]{3,20}$')){
+          window.alert("Password maximum length was 3 to 20");
+          checking=1
+          return false;
+        }
+        if(!data.get("password")==data.get("conform_Password")){
+          window.alert("password not match");
+          checking=1
+          return false;
+        }
+
+        window.alert(checking);
+        if(checking===0){
+
+          let firstName = data.get("firstName") 
+        let LastName = data.get("lastName") 
+        let username = data.get("username") 
+        let emailid = data.get("email") 
+        let phonenumber = data.get("phone") 
+        let city = data.get("address") 
+        let password = data.get("password") 
+        let conform_password = data.get("conform_password") 
+          const userdata = {
+          
+            full_name: firstName+" "+LastName,
+            username: username,
+            useremail: emailid,
+            userpassword: password,
+            phone: phonenumber,
+            address: city,
           }
-        //   if(!itemData.first_name.trim().match('^[a-zA-Z]{3,20}$')){
-        //     window.alert("First Name contain only character min 20 and maxiumum of 20 characters");
-        //     itemData.checking=1
-        //     return false;
-        //   }
-        // if(itemData.Last_name.trim()===""){
-        //     window.alert("Last name is required");
-        //     itemData.checking=1
-        //     return false;
-        //   }
-        //   if(!itemData.Last_name.trim().match('^[a-zA-Z ]{3,20}$')){
-        //     window.alert("Last name contain only character min 20 and maxiumum of 20 characters");
-        //     itemData.checking=1
-        //     return false;
-        //   }
-        //   if(itemData.username.trim()===""){
-        //     window.alert("useraname is required");
-        //     itemData.checking=1
-        //     return false;
-        //   }
-        //   if(!itemData.first_name.trim().match('^[a-zA-Z0-9]{3,20}$')){
-        //     window.alert("username contain only character min 20 and maxiumum of 20 characters");
-        //     itemData.checking=1
-        //     return false;
-        //   }
-        //   if(!itemData.email.match('^[a-zA-Z0-9@.]{3,20}$')){
-        //     window.alert("Enter the correct email address");
-        //     itemData.checking=1
-        //     return false;
-        //   }
-        //   if(!itemData.phonenumber.match('^[0-9]{10}$')){
-        //     window.alert("Enter the correct contact number");
-        //     itemData.checking=1
-        //     return false;
-        //   }
-        //   if(itemData.city.trim()===""){
-        //     window.alert("City was required");
-        //     itemData.checking=1
-        //     return false;
-        //   }
-        //   if(!itemData.city.trim().match('^[a-zA-Z]{3,20}$')){
-        //     window.alert("Enter the correct city");
-        //     itemData.checking=1
-        //     return false;
-        //   }
-        //   if(itemData.password.trim()===""){
-        //     window.alert("password was is required");
-        //     itemData.checking=1
-        //     return false;
-        //   }
-        //   if(!itemData.password.trim().match('^[a-zA-Z0-9!@$%^&*]{3,20}$')){
-        //     window.alert("Password maximum length was 3 to 20");
-        //     itemData.checking=1
-        //     return false;
-        //   }
-        //   if(itemData.password===itemData.conform_password){
-        //     window.alert("select the car type");
-        //     itemData.checking=1
-        //     return false;
-        //   }
-
-          // window.alert(itemData.checking);
-          // if(itemData.checking===0){
-          //   if(window.confirm("do you want to adding this car")){
-          //       axios.post(`http://localhost:8888/users`,itemData);
-          //        window.alert("Added successfully");
-          //       nav('/login');
-          //   }   
-           
-          // }
-          
-    }}
-
-
-
-
-       
-          
-        // axios.post(`http://localhost:8888/users`,itemData);
-        // window.alert("Added successfully");
-        // nav('/login');
+              axios.post(`http://localhost:8888/users`,userdata);
+               window.alert("Added successfully");
+              nav('/login');   
+         
+        }
+      }
       
         
         
@@ -173,7 +169,6 @@ const Signup = () => {
                 <TextField
                   autoComplete="given-name"
                   name="firstName"
-                  required
                   fullWidth
                   id="firstName"
                   label="First Name"
@@ -182,7 +177,7 @@ const Signup = () => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  required
+                  
                   fullWidth
                   id="lastName"
                   label="Last Name"
@@ -192,7 +187,7 @@ const Signup = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
+                  
                   fullWidth
                   id="username"
                   label="Username"
@@ -202,27 +197,26 @@ const Signup = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
+                  
                   fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
-                  autoComplete="email"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
+                  
                   fullWidth
-                  id="phone_number"
+                  id="phone"
                   label="Phone Number"
-                  name="phonenumber"
+                  name="phone"
                   autoComplete="phonenumber"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
+                  
                   fullWidth
                   id="address"
                   label="City"
@@ -232,7 +226,7 @@ const Signup = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
+                  
                   fullWidth
                   name="password"
                   label="Password"
@@ -243,7 +237,7 @@ const Signup = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
+                  
                   fullWidth
                   name="conform_Password"
                   label="conform_Password"

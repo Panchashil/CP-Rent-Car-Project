@@ -65,7 +65,7 @@ const Home = () => {
 
 const Carvideo = () => (
 
-  <div class="lightbox" data-mdb-lightbox-init>
+  <div class="lightbox" data-mdb-lightbox-init container>
 
   <div class="row">
 
@@ -382,8 +382,10 @@ const LandingPage = () => {
       </Drawer>
       <main className="content">
         <Home />
-        <Carvideo />
+        
         <About />
+        <Carvideo />
+
         <Cars />
         <Contact />
       </main>
