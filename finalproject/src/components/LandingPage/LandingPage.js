@@ -67,9 +67,9 @@ const Carvideo = () => (
 
   <div class="lightbox" data-mdb-lightbox-init container>
 
-  <div class="row">
+  <div class="row"  >
 
-    <div class="col-lg-6">
+    <div class="col-lg-6" style={{borderRadius:"30px"}}>
 
     <video autoPlay loop muted class="w-100 mb-2 mb-md-4 shadow-1-strong rounded">
      <source src={video1} type="video/mp4" />

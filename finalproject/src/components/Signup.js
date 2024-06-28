@@ -1,152 +1,133 @@
-// import React from 'react'
-
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useState } from 'react'
-
 
 const defaultTheme = createTheme();
 
 const Signup = () => {
-  const nav =useNavigate();
-   const redirect = ()=>{
-   
-   }
+  const nav = useNavigate();
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        let checking =0
-        if(data.get("firstName").trim()===""){
-          window.alert("First Name is required");
-          checking=1
-          return false;
-        }
-        if(!data.get("firstName").trim().match('^[a-zA-Z]{3,20}$')){
-          window.alert("First Name contain only character min 20 and maxiumum of 20 characters");
-          checking=1
-          return false;
-        }
-        else{
-          
-        }
-      if(data.get("lastName").trim()===""){
-          window.alert("Last name is required");
-          checking=1
-          return false;
-        }
-        if(!data.get("lastName").trim().match('^[a-zA-Z ]{3,20}$')){
-          window.alert("Last name contain only character min 20 and maxiumum of 20 characters");
-          checking=1
-          return false;
-        }
-        if(data.get("username").trim()===""){
-          window.alert("useraname is required");
-          checking=1
-          return false;
-        }
-        if(!data.get("username").trim().match('^[a-zA-Z0-9]{3,20}$')){
-          window.alert("username contain only character min 20 and maxiumum of 20 characters");
-          checking=1
-          return false;
-        }
-        if(data.get("email").trim()===""){
-          window.alert("Email is required");
-          checking=1
-          return false;
-        }
-        if(!data.get("email").match('^[a-zA-Z0-9@.]{3,50}$')){
-          window.alert("email contain only character");
-          checking=1
-          return false;
-        }
-        if(data.get("email")===axios.get(`http://localhost:8888/users/useremail?=${data.get('email')}`)){
-          window.alert("email contain only character");
-          checking=1
-          return false;
-        }
-        if(!data.get("phone").trim()===""){
-          window.alert("Enter the correct contact number");
-          checking=1
-          return false;
-        }
-        if(!data.get("phone").trim().match(`^[0-9]{10}$`)){
-          window.alert("Enter the correct contact number");
-          checking=1
-          return false;
-        }
-        if(data.get("address").trim()===""){
-          window.alert("City was required");
-          checking=1
-          return false;
-        }
-        if(!data.get("address").trim().match('^[a-zA-Z]{3,20}$')){
-          window.alert("Enter the correct city");
-          checking=1
-          return false;
-        }
-        if(data.get("password").trim()===""){
-          window.alert("password was is required");
-          checking=1
-          return false;
-        }
-        if(!data.get("password").trim().match('^[a-zA-Z0-9!@$%^&*]{3,20}$')){
-          window.alert("Password maximum length was 3 to 20");
-          checking=1
-          return false;
-        }
-        if(!data.get("password")==data.get("conform_Password")){
-          window.alert("password not match");
-          checking=1
-          return false;
-        }
+  // State variables for form fields and errors
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
+  const [username, setUsername] = React.useState('');
+  const [useremail, setEmail] = React.useState('');
+  const [phoneNumber, setPhoneNumber] = React.useState('');
+  const [address, setAddress] = React.useState('');
+  const [userpassword, setPassword] = React.useState('');
+  const [confirmPassword, setConfirmPassword] = React.useState('');
 
-        window.alert(checking);
-        if(checking===0){
+  const [errors, setErrors] = React.useState({});
 
-          let firstName = data.get("firstName") 
-        let LastName = data.get("lastName") 
-        let username = data.get("username") 
-        let emailid = data.get("email") 
-        let phonenumber = data.get("phone") 
-        let city = data.get("address") 
-        let password = data.get("password") 
-        let conform_password = data.get("conform_password") 
-          const userdata = {
-          
-            full_name: firstName+" "+LastName,
-            username: username,
-            useremail: emailid,
-            userpassword: password,
-            phone: phonenumber,
-            address: city,
-          }
-              axios.post(`http://localhost:8888/users`,userdata);
-               window.alert("Added successfully");
-              nav('/login');   
-         
+  // Function to validate the form fields
+  const validateForm = async () => {
+    const errors = {};
+
+    // Helper function to check if a field is empty or contains only spaces
+    const isEmptyOrSpaces = (str) => !str || str.trim().length === 0;
+
+    // Validate email
+    if (isEmptyOrSpaces(useremail)) {
+      errors.useremail = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(useremail)) {
+      errors.useremail = 'Email address is invalid';
+    } else {
+      // Check if email already exists
+      try {
+        const response = await axios.get(`http://localhost:8888/users?useremail=${useremail}`);
+        if (response.data.length > 0) {
+          errors.useremail = 'Email address is already registered';
         }
+      } catch (error) {
+        console.error('Error checking email:', error);
+        window.alert('Error checking email. Please try again.');
       }
-      
-        
-        
+    }
 
-    return (
-      <ThemeProvider theme={defaultTheme}>
+    // Validate phone number
+    if (isEmptyOrSpaces(phoneNumber)) {
+      errors.phoneNumber = 'Phone Number is required';
+    } else if (!/^\d{10}$/.test(phoneNumber)) {
+      errors.phoneNumber = 'Phone Number must be a 10-digit number';
+    }
+
+    // Validate password
+    if (isEmptyOrSpaces(userpassword)) {
+      errors.userpassword = 'Password is required';
+    } else if (!/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/.test(userpassword)) {
+      errors.userpassword = 'Password must contain at least one uppercase letter, one lowercase letter, one special character, and one digit';
+    }
+
+    // Validate other fields
+    if (isEmptyOrSpaces(firstName)) errors.firstName = 'First Name is required';
+    if (isEmptyOrSpaces(lastName)) errors.lastName = 'Last Name is required';
+    if (isEmptyOrSpaces(username)) {
+      errors.username = 'Username is required';
+    } else {
+      // Check if username already exists
+      try {
+        const response = await axios.get(`http://localhost:8888/users?username=${username}`);
+        if (response.data.length > 0) {
+          errors.username = 'Username is already taken';
+        }
+      } catch (error) {
+        console.error('Error checking username:', error);
+        window.alert('Error checking username. Please try again.');
+      }
+    }
+    if (isEmptyOrSpaces(address)) errors.address = 'Address is required';
+    if (userpassword !== confirmPassword) errors.confirmPassword = 'Passwords do not match';
+
+    return errors;
+  };
+
+  // Handle form submission
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // Validate form
+    const validationErrors = await validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    // Form data
+    const userData = {
+      firstName,
+      lastName,
+      username,
+      useremail,
+      phoneNumber,
+      address,
+      userpassword,
+    };
+
+    // Example of axios post request
+    try {
+      await axios.post(`http://localhost:8888/users`, userData);
+      window.alert("creating account successfully !")
+      nav('/login');
+    } catch (error) {
+      console.error('Error adding user:', error);
+      window.alert('Error adding user. Please try again.');
+    }
+  };
+
+  return (
+    <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -163,12 +144,16 @@ const Signup = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" Validate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  error={!!errors.firstName}
+                  helperText={errors.firstName}
                   autoComplete="given-name"
                   name="firstName"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   fullWidth
                   id="firstName"
                   label="First Name"
@@ -177,72 +162,95 @@ const Signup = () => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  
+                  error={!!errors.lastName}
+                  helperText={errors.lastName}
                   fullWidth
                   id="lastName"
                   label="Last Name"
                   name="lastName"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   autoComplete="family-name"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  
+                  error={!!errors.username}
+                  helperText={errors.username}
                   fullWidth
                   id="username"
                   label="Username"
                   name="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   autoComplete="username"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  
+                  error={!!errors.useremail}
+                  helperText={errors.useremail}
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
+                  id="useremail"
+                  label=" email"
+                  name="useremail"
+                  value={useremail}
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  
+                  error={!!errors.phoneNumber}
+                  helperText={errors.phoneNumber}
                   fullWidth
-                  id="phone"
+                  id="phoneNumber"
                   label="Phone Number"
-                  name="phone"
-                  autoComplete="phonenumber"
+                  name="phoneNumber"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  autoComplete="tel"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  
+                  error={!!errors.address}
+                  helperText={errors.address}
                   fullWidth
                   id="address"
-                  label="City"
+                  label="Address"
                   name="address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
                   autoComplete="address"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  
+                  error={!!errors.userpassword}
+                  helperText={errors.userpassword}
                   fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
+                  id="userpassword"
+                  label="userpassword"
+                  name="userpassword"
+                  type="userpassword"
+                  value={userpassword}
+                  onChange={(e) => setPassword(e.target.value)}
                   autoComplete="new-password"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  
+                  error={!!errors.confirmPassword}
+                  helperText={errors.confirmPassword}
                   fullWidth
-                  name="conform_Password"
-                  label="conform_Password"
+                  id="confirmPassword"
+                  label="Confirm Password"
+                  name="confirmPassword"
                   type="password"
-                  id="conform_password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  autoComplete="new-password"
                 />
               </Grid>
             </Grid>
@@ -251,25 +259,21 @@ const Signup = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={()=>redirect()}
             >
               Sign Up
             </Button>
-            <br/>
-          </Box>
-          <Grid container justifyContent="flex-end"  onClick={()=>redirect()}>
+            <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link component="button" variant="body2" >
+                <Link component="button" variant="body2" onClick={() => nav('/login')}>
                   Already have an account? Sign in
                 </Link>
               </Grid>
             </Grid>
+          </Box>
         </Box>
-        {/* <Copyright sx={{ mt: 5 }} /> */}
       </Container>
     </ThemeProvider>
   );
-    
-}
+};
 
-export default Signup
+export default Signup;

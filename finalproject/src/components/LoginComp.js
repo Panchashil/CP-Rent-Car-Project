@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -12,68 +10,82 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { redirect, useNavigate, useRouteLoaderData } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Outlet } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
+const LoginComp = () => {
+  const nav = useNavigate();
 
-const Testing = () => {
-   const nav = useNavigate();
-   const redirect = ()=>{
+  // State for form errors
+  const [errors, setErrors] = React.useState({});
+
+  const redirectSignup = () => {
     nav('/signup');
-   };
-   const reloadss = ()=>{
+  };
+
+  const redirectForgot = () => {
     nav('/forgot');
-   };
-   
-   const handleSubmit = (event) => {
+  };
+
+  const validateForm = (email, password) => {
+    const errors = {};
+
+    if (!email || email.trim() === '') {
+      errors.email = 'Email is required';
+    }
+
+    if (!password || password.trim() === '') {
+      errors.password = 'Password is required';
+    }
+
+    return errors;
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    let email = ""
-    let password = ""
-    if(data.get("email").trim()===""){
-        window.alert("write a username")
-        return false
-    }
-    else{
-        email = data.get('email');
-    }
-    if(data.get("password").trim()===""){
-        window.alert("Password Field was required")
-        return false
-    }
-    else{
-        password = data.get('password');
-    }
-    axios.get("http://localhost:8888/users").then((res)=>{
-        let usersData=res.data;
-       const data =usersData.filter((val)=>{return val.useremail===email && val.userpassword===password});
-       const adata=usersData.filter((val)=>{return val.useremail==="victor@gmail.com" && val.userpassword==="victor123"})
-       if(adata>0
-      ){
-nav("/adminDashboard");
-       }
-       if(data.length>0){
-        nav("/MainDashbord");
-        sessionStorage.setItem("user",email)
-       }
-       else{  
-        window.alert("useremail or passwwsord is wrong");
-        email="";
-        password="";
-       }
-    }).catch(()=>{})
+    let email = data.get('email').trim();
+    let password = data.get('password').trim();
 
+    const validationErrors = validateForm(email, password);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    try {
+      const res = await axios.get("http://localhost:8888/users");
+      let usersData = res.data;
+
+      const user = usersData.find((val) => val.useremail === email);
+
+      if (!user) {
+        setErrors({ email: 'Invalid email' });
+        return;
+      }
+
+      if (user.userpassword !== password) {
+        setErrors({ password: 'Invalid password' });
+        return;
+      }
+
+      if (user.useremail === "victor@gmail.com" && user.userpassword === "victor123") {
+        nav("/AdminDash");
+      } else {
+        nav("/MainDashbord");
+        sessionStorage.setItem("user", email);
+      }
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      window.alert('An error occurred while logging in. Please try again.');
+    }
   };
 
   return (
-  
-    <ThemeProvider theme={defaultTheme} >
-       
-    
-      <Container component="main"  maxWidth="xs">
+    <ThemeProvider theme={defaultTheme}>
+      <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
@@ -81,7 +93,6 @@ nav("/adminDashboard");
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'black' }}>
@@ -100,6 +111,8 @@ nav("/adminDashboard");
               name="email"
               autoComplete="email"
               autoFocus
+              error={!!errors.email}
+              helperText={errors.email}
             />
             <TextField
               margin="normal"
@@ -110,6 +123,8 @@ nav("/adminDashboard");
               type="password"
               id="password"
               autoComplete="current-password"
+              error={!!errors.password}
+              helperText={errors.password}
             />
             <Button
               type="submit"
@@ -121,22 +136,21 @@ nav("/adminDashboard");
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link component="button" variant="text" onClick={()=>reloadss()}>
+                <Link component="button" variant="text" onClick={redirectForgot}>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link component="button" variant='text' onClick={()=>redirect()}>
+                <Link component="button" variant="text" onClick={redirectSignup}>
                   Don't have an account? Sign Up
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </ThemeProvider>
   );
-}
+};
 
-export default Testing
+export default LoginComp;

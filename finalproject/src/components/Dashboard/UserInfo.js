@@ -8,24 +8,30 @@ const UserInfo = () => {
   const [itemData,setItemData] = useState([]);
 
   useEffect(()=>{
-    featchuser() 
+    fetchCars() 
 },[])
 
-    const featchuser= () =>{
-      axios.get(`http://localhost:8888/users?useremail=${userinfos}`).then((referance)=>{
-          // setItemData(referance.data)
-          setItemData(referance.data)
-          console.log(referance.data)
-      }).catch((error)=>{})
+const fetchCars = async () => {
+  try {
+    const response = await fetch(`http://localhost:8888/users?useremail=${userinfos}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch cars');
+    }
+    const data = await response.json();
+    setItemData(data);
+  } catch (error) {
   }
+};
   return <>
   <div className='.d-inline-flex. p-5 bd-highlight' style={{margin:"auto"}}>
 {
   itemData.map((val, index) => (
     <div key={index} className="col-lg-4 col-md-4 col-sm-6">
    
-        <h5 className="card-title display-1">{val.username}</h5>
-        <p className="card-text display-5"><strong> {val.useremail} </strong></p> 
+        <p className="card-title display-4">Email:<strong> {val.useremail} </strong></p>
+        <p className="card-text display-5">UserName: <strong> {val.username} </strong></p> 
+        <p className="card-text display-5">Phone_number:<strong> {val.phoneNumber} </strong></p> 
+        <p className="card-text display-5">Address: <strong> {val.address} </strong></p> 
       
 </div>))}
 </div>
