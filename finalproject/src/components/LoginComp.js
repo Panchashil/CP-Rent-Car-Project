@@ -39,7 +39,7 @@ const LoginComp = () => {
        const adata=usersData.filter((val)=>{return val.useremail==="victor@gmail.com" && val.userpassword==="victor123"})
        if(adata>0
       ){
-nav("/adminDashboard");
+nav("/AdminDash");
        }
        if(data.length>0){
         nav("/MainDashbord");

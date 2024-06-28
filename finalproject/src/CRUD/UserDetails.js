@@ -27,7 +27,7 @@ const UserDetails = () => {
 
     const deleteCar = (id)=>{
      
-        if(window.confirm(`Do you want to delete the CAR:${id}`)){
+        if(window.confirm(`Do you want to delete the User:${id}`)){
            axios.delete(`http://localhost:8888/users/${id}`).then(()=>{
             window.alert("Record Deleted Successfully!!");
 fetchData();
@@ -41,8 +41,7 @@ fetchData();
            
           
         
-            <Link to="#" className='btn btn mb-2 button-33' >
-           Add</Link>
+            
           
           
 
@@ -52,6 +51,7 @@ fetchData();
                     <th id='head'>ID</th>
                     <th id='head'>USER NAME</th>
                     <th id='head'>USER EMAIL</th>
+                    <th id='head'>IMAGE</th>
                    
                     
                     <th id='head'>ACTIONS</th>
@@ -64,7 +64,7 @@ fetchData();
                             <td>{index+1}</td>
                             <td>{val.username}</td>
                             <td>{val.useremail}</td>
-                            
+                            <td><img src={val.avatar}/></td>
                             <td>
                             <Link to={`/updateCar/${val.id}`} >
                             <button type='button'  className='btn btn-warning '  >

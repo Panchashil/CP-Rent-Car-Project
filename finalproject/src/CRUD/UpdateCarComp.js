@@ -35,7 +35,7 @@ const UpdateCarComp = () => {
             itemData.checking=1
             return false;
           }
-          if(!itemData.carname.trim().match('^[a-zA-Z1-9 ]{3,20}$')){
+          if(!itemData.carname.trim().match('^[a-zA-Z ]{3,20}$')){
             window.alert("Car Name must contain only character min-3 and Max-20");
             itemData.checking=1
             return false;
@@ -71,7 +71,7 @@ const UpdateCarComp = () => {
             return false;
           }
           if(itemData.checking===0){
-            if(window.confirm("are you sure you want to edit the car records")){
+            if(window.confirm("You are editing the Record. Can I Proceed?")){
                 axios.put(`http://localhost:8888/car/${id}`,itemData).then(()=>{
                     window.alert("Record Updated Successsfully");
                     nav('/AdminDash');
@@ -91,7 +91,7 @@ const UpdateCarComp = () => {
     },[])
     return (
         <div>
-        <h2>UPDATE CAR DETAILS</h2>
+        <h2 className='topic'>UPDATE CAR DETAILS</h2>
         <div className='row'>
           <div className='col-sm-3'></div>
           <div className='col-sm-6'>

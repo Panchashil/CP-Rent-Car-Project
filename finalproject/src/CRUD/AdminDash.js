@@ -108,6 +108,12 @@ import { Button } from '@mui/material';
         console.log(carDashboard);
       };
     
+      const redirect=()=>{
+       if( window.confirm("are You sure !! Logout?")){
+        nav('/')
+       }
+       
+      }
       const handleDrawerOpen = () => {
         setOpen(true);
       };
@@ -117,7 +123,7 @@ import { Button } from '@mui/material';
         setOpen(false);
       };
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex' }} >
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -134,7 +140,7 @@ import { Button } from '@mui/material';
             <MenuIcon />
             </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
+           ADMIN DASHBOARD
           </Typography>
         </Toolbar>
       </AppBar>
@@ -149,6 +155,7 @@ import { Button } from '@mui/material';
 
         <Link to="" className='hello'><MenuItem ><Button >Cars Details</Button></MenuItem></Link>
         <Divider />
+<Divider />
         <Divider />
         <Divider />
         <Divider />
@@ -157,16 +164,6 @@ import { Button } from '@mui/material';
         <Divider />
         <Divider />
         <Divider />
-        <Divider />
-        <Divider />
-        <Divider />
-        <Divider />
-        <Divider />
-        <Divider />
-        <Divider />
-        <Divider />
-        <Divider />
-
 <Link to="userDetails" className='hello'><MenuItem ><Button >users Details</Button></MenuItem></Link>
 <Divider />
 <Divider />
@@ -189,7 +186,7 @@ import { Button } from '@mui/material';
         <Divider />
         <Divider />
         <Divider />
-<Link to="addCar" className='hello '><MenuItem ><Button >Feed Backs    </Button></MenuItem></Link>
+<Link to="feedback" className='hello '><MenuItem ><Button >Feed Backs    </Button></MenuItem></Link>
  <Divider />
  <Divider />
         <Divider />
@@ -200,7 +197,7 @@ import { Button } from '@mui/material';
         <Divider />
         <Divider />
         <Divider />
-<Link to="addCar" className='hello'><MenuItem ><Button >Logout       </Button></MenuItem></Link>
+<Link  className='hello'><MenuItem ><Button onClick={()=>redirect()}>Logout       </Button></MenuItem></Link>
      
         <Divider />
         

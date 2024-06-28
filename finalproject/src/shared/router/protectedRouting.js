@@ -10,7 +10,7 @@ const ProtectedRouting = ({Component}) => {
            nav("/");
         }else if(sessionStorage.getItem("user") == ("victor@gmail.com")){
          console.log(sessionStorage.getItem("user") );
-            nav("/adminDashboard")
+            nav("/AdminDash")
         }
     },[])
    
