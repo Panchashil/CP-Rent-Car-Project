@@ -132,7 +132,7 @@ const UpdateCarComp = () => {
        <select className="form-control" name="status" onChange={inputChangeHandler} value={itemData.status} >
            <option value="">Select car Status</option>
            <option value="Booked">Booked</option>
-           <option value="Not-Booked">Not-Booked</option>
+           <option value="Pending">Pending</option>
        </select>
   
    <button type="submit" className="btn btn-primary mt-3 form-control">Submit</button>

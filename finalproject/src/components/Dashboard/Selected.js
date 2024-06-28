@@ -72,6 +72,7 @@ const Selected = () => {
               <div className="card-body">
                 <h5 className="card-title">{val.carname}</h5>
                 <p className="card-text">Booked by: <strong>  {val.user} </strong></p>
+                <p className="card-text">Booked by: <strong>  {val.status} </strong></p>
                 <button key={users.id} onClick={() => handleAddOne(val)} className="btn btn-primary float-left">Remove the item </button> 
               </div>  
               

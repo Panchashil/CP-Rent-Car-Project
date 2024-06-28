@@ -119,12 +119,12 @@ const AddCarComp = () => {
            <label for="status">Car Image</label>
            <input type="text"  className="form-control image" name="carimage" onChange={inputChangeHandler} value={itemData.carimage} placeholder="Car Image" />
            
-           {/* <label for="status">Car Status</label>
+           <label for="status">Car Status</label>
            <select className="form-control" name="status" onChange={inputChangeHandler} value={itemData.status} required>
                <option value="">Select car Status</option>
                <option value="Booked">Booked</option>
-               <option value="Not-Booked">Not-Booked</option>
-           </select> */}
+               <option value="Pending">Pending</option>
+           </select>
       
        <button type="submit" className="btn btn-info mt-3 form-control" >Submit</button>
    </form>

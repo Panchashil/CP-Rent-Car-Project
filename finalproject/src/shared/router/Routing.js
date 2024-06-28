@@ -35,7 +35,7 @@ import SportsBooked from "../../CRUD/SportsBooked";
 
 const router = createBrowserRouter([
 
-  {path:"AdminDash" , element:<AdminDash></AdminDash>,children:[
+  {path:"AdminDash" , element:<ProtectedRouting Component={AdminDash}></ProtectedRouting>,children:[
  
     {path:"",element:<AdminDashboardComp></AdminDashboardComp>},
     {path:"addCar",element:<AddCarComp></AddCarComp>},

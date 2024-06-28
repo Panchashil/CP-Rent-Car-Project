@@ -51,6 +51,8 @@ fetchData();
                     <th id='head'>ID</th>
                     <th id='head'>USER NAME</th>
                     <th id='head'>USER EMAIL</th>
+                    <th id='head'>USER ADDRESS</th>
+                    <th id='head'>USER CONTACT</th>
                     <th id='head'>IMAGE</th>
                    
                     
@@ -64,6 +66,8 @@ fetchData();
                             <td>{index+1}</td>
                             <td>{val.username}</td>
                             <td>{val.useremail}</td>
+                            <td>{val.address}</td>
+                            <td>{val.phoneNumber}</td>
                             <td><img src={val.avatar}/></td>
                             <td>
                             <Link to={`/updateCar/${val.id}`} >

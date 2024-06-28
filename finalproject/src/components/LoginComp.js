@@ -74,6 +74,7 @@ const LoginComp = () => {
 
       if (user.useremail === "victor@gmail.com" && user.userpassword === "victor123") {
         nav("/AdminDash");
+        sessionStorage.setItem("user", email);
       } else {
         nav("/MainDashbord");
         sessionStorage.setItem("user", email);
@@ -136,11 +137,6 @@ const LoginComp = () => {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link component="button" variant="text" onClick={redirectForgot}>
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item>
                 <Link component="button" variant="text" onClick={redirectSignup}>
                   Don't have an account? Sign Up

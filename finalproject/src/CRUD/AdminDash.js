@@ -110,6 +110,7 @@ import { Button } from '@mui/material';
     
       const redirect=()=>{
        if( window.confirm("are You sure !! Logout?")){
+        sessionStorage.clear()
         nav('/')
        }
        
