@@ -24,14 +24,16 @@ const fetchCars = async () => {
 };
   return <>
   <div className='.d-inline-flex. p-5 bd-highlight' style={{margin:"auto"}}>
+  
+
 {
   itemData.map((val, index) => (
     <div key={index} className="col-lg-4 col-md-4 col-sm-6">
    
-        <p className="card-title display-4">Email:<strong> {val.useremail} </strong></p>
-        <p className="card-text display-5">UserName: <strong> {val.username} </strong></p> 
-        <p className="card-text display-5">Phone_number:<strong> {val.phoneNumber} </strong></p> 
-        <p className="card-text display-5">Address: <strong> {val.address} </strong></p> 
+        <p className="card-title display-4" id='result ' >Email:<strong> {val.useremail} </strong></p>
+        <p className="card-text display-5"  id='result '>UserName: <strong> {val.username} </strong></p> 
+        <p className="card-text display-5"  id='result '>Phone_number:<strong> {val.phoneNumber} </strong></p> 
+        <p className="card-text display-5"  id='result '>Address: <strong> {val.address} </strong></p> 
       
 </div>))}
 </div>

@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { redirect, useNavigate, useRouteLoaderData } from 'react-router-dom';
 import axios from 'axios';
 import { Outlet } from 'react-router-dom';
+import Navidator from './Dashboard/Navidator';
 
 const defaultTheme = createTheme();
 
@@ -50,7 +51,8 @@ const AdminComp = () => {
 
   };
 
-  return (
+  return (<>
+    
     <ThemeProvider theme={defaultTheme} >
       <Container component="main"  maxWidth="xs">
         <CssBaseline />
@@ -121,7 +123,7 @@ const AdminComp = () => {
       </Container>
     </ThemeProvider>
 
-
+    </>
   );
 }
 

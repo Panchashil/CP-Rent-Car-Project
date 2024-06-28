@@ -233,7 +233,7 @@ const Signup = () => {
                   id="userpassword"
                   label="userpassword"
                   name="userpassword"
-                  type="userpassword"
+                  type="password"
                   value={userpassword}
                   onChange={(e) => setPassword(e.target.value)}
                   autoComplete="new-password"

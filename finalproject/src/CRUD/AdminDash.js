@@ -27,6 +27,7 @@ import UserDashbord from '../components/Dashboard/UserDashbord';
 import InputLabel from '@mui/material/InputLabel';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
+import Navidator from '../components/Dashboard/Navidator';
 
 
 
@@ -124,8 +125,12 @@ import { Button } from '@mui/material';
         setOpen(false);
       };
     return (
+      <>
+      
+      
         <Box sx={{ display: 'flex' }} >
       <CssBaseline />
+      
       <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
@@ -138,10 +143,12 @@ import { Button } from '@mui/material';
               ...(open && { display: 'none' }),
             }}
           >
+            
             <MenuIcon />
             </IconButton>
+            
           <Typography variant="h6" noWrap component="div">
-           ADMIN DASHBOARD
+           ADMIN DASHBORD
           </Typography>
         </Toolbar>
       </AppBar>
@@ -220,6 +227,7 @@ import { Button } from '@mui/material';
         </Typography>
       </Box>
     </Box>
+    </>
     )
 }
 

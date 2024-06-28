@@ -123,7 +123,9 @@ const UpdateCarComp = () => {
        <select className="form-control" name="type" onChange={inputChangeHandler} value={itemData.type} >
            <option value="">Select car type</option>
            <option value="luxurious">Luxurious</option>
-           <option value="normal">Normal</option>
+               <option value="sports">Sports</option>
+               <option value="suplux">SuperLuxurious</option>
+               <option value="delux">Delux</option>
        </select>
        <label for="status">Car Image</label>
        <input type="text" className="form-control" name="carimage" onChange={inputChangeHandler} value={itemData.carimage} />

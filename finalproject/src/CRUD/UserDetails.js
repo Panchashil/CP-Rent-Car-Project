@@ -70,17 +70,6 @@ fetchData();
                             <td>{val.phoneNumber}</td>
                             <td><img src={val.avatar}/></td>
                             <td>
-                            <Link to={`/updateCar/${val.id}`} >
-                            <button type='button'  className='btn btn-warning '  >
-                           EDIT
-                                </button>
-           
-           </Link>
-           
-                           
-                           
-                              
-                              &nbsp; | &nbsp;
                               
                                 <button type='button'  onClick={()=>deleteCar(val.id)} className='btn btn-danger '>
                                   DELETE  
