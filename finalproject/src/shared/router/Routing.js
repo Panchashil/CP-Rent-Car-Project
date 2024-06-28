@@ -27,14 +27,32 @@ import ProtectedRouting from "./protectedRouting";
 import AdminDash from "../../CRUD/AdminDash";
 import UserDetails from "../../CRUD/UserDetails";
 import BookedCar from "../../CRUD/BookedCar";
+import FeedBack from "../../CRUD/FeedBack";
+import DeluxBooked from "../../CRUD/DeluxBooked";
+import Template from "../../CRUD/Template";
+import SuperLuxuriousBooked from "../../CRUD/SuperLuxuriousBooked";
+import SportsBooked from "../../CRUD/SportsBooked";
+
 const router = createBrowserRouter([
 
   {path:"AdminDash" , element:<AdminDash></AdminDash>,children:[
+ 
     {path:"",element:<AdminDashboardComp></AdminDashboardComp>},
     {path:"addCar",element:<AddCarComp></AddCarComp>},
     {path:"userDetails",element:<UserDetails></UserDetails>},
     {path:"updateCar/:id",element:<UpdateCarComp></UpdateCarComp>},
-    {path:"bookedcar",element:<BookedCar></BookedCar>},
+    // {path:"bookedcar",element:<Temp></Temp>},
+     {path:"bookedcar",element:<Template></Template>,children:[
+
+      {path:"suplux",element:<BookedCar></BookedCar>},
+      {path:"luxurious",element:<SuperLuxuriousBooked></SuperLuxuriousBooked>},
+      {path:"",element:<SuperLuxuriousBooked></SuperLuxuriousBooked>},
+      {path:"delux",element:<DeluxBooked></DeluxBooked>},
+      {path:"sports",element:<SportsBooked></SportsBooked>},
+     
+     ]},
+    {path:"feedback",element:<FeedBack></FeedBack>},
+
   ]},
    
 

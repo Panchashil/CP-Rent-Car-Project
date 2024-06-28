@@ -49,6 +49,7 @@ const LoginComp = () => {
     let email = data.get('email').trim();
     let password = data.get('password').trim();
 
+
     const validationErrors = validateForm(email, password);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);

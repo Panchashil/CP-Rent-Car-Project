@@ -235,3 +235,16 @@ body, html {
  
   transform: scale(1.05) rotate(-1deg);
 }
+.topic{
+  text-align: center;
+ 
+
+  
+}
+#add-upp{
+/* background-image: url(https://th.bing.com/th/id/R.6d7b17170e24f09f50b9c31c733af299?rik=HDSiLK68tUdVbQ&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fytPu10t.jpg&ehk=h8OzarAJhfrwJrkcYS%2bAcs%2frK%2bjudGibZAt3R9dEyzE%3d&risl=&pid=ImgRaw&r=0); */
+ background-repeat: none;
+ background-size: cover;
+
+  
+}

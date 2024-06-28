@@ -5,28 +5,28 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const BookedCar = () => {
-  const [userData, setUserData] = useState([]);
+const DeluxBooked = () => {
   const [users,setUsers] =useState([]);
-  const [itemData,setItemData]=useState([]);
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     fetchData()
 
   }, [])
-  
+
   const fetchData = () => {
-    axios.get(`http://localhost:8888/car?type=suplux`).then((res) => {
+    axios.get(`http://localhost:8888/car?type=delux`).then((res) => {
       console.log(res.data);
       setUserData(res.data)
     }).catch((error) => { })
   }
+    
   const handleAddOne =  (car) => {
     if(window.confirm(" Cancel the Booking Request?")){
     const newStatus = ""
     const newcount = 1
       axios.put(`http://localhost:8888/car/${car.id}`, { ...car, user:  "" })
-      // axios.put(`http://localhost:8888/car/${car.id}`, { ...car, status: newcount })
+     
       .then(() => {
         setUserData(userData.map(item => item.id === car.id ? { ...item, user: newStatus } : item));
       })
@@ -35,7 +35,6 @@ const BookedCar = () => {
       });
     }
     }
- 
     const statuschange=(car)=>{
       const newStatus=car.status==='Booked'?'Pending':'Booked';
       
@@ -52,9 +51,7 @@ const BookedCar = () => {
         
     }
    return  (
-   
     <div className='container-fluid mt-4 mb-4 '>
-      
     <table className='table table-hover table-striped '>
       <thead>
         <tr className='table-warning'>
@@ -89,15 +86,8 @@ const BookedCar = () => {
               <td><img src={val.carimage} alt="Loading" /></td>
               <td>{val.type}</td>
  <td>{val.user}</td>
-              <td> <button key={users.id} onClick={() => handleAddOne(val)} className="btn btn-danger float-left">Cancel Booking</button> </td>
-              <td> <button type="button"  className={`btn ${val.status==='Booked'  ? 'btn-outline-success' : 'btn-outline-secondary'}`} onClick={() => statuschange(val)} >{val.status}</button> 
-            
-                {/* <button type="button" className={`btn ${val.count>0  ? 'btn-outline-success' : 'btn-outline-danger'}`} onClick={() => statuschange(val)}>
-                  {val.status}
-                </button> */}
-              
-              </td>
-             
+ <td> <button key={users.id} onClick={() => handleAddOne(val)} className="btn btn-danger float-left">Cancel Booking</button> </td>
+ <td> <button type="button"  className={`btn ${val.status==='Booked'  ? 'btn-outline-success' : 'btn-outline-secondary'}`} onClick={() => statuschange(val)} >{val.status}</button> </td>       
             </tr>
             }
           })
@@ -114,4 +104,4 @@ const BookedCar = () => {
         
 
 }
-export default BookedCar;
+export default DeluxBooked;

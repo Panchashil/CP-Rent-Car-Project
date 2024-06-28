@@ -22,7 +22,8 @@ const defaultTheme = createTheme();
 const AdminComp = () => {
    const nav = useNavigate();
    const redirect = ()=>{
-    nav('/adminDashboard');
+    nav('/AdminDash');
+    
    };
    
 
@@ -37,7 +38,7 @@ const AdminComp = () => {
         let adminData=res.data;
        const data =adminData.filter((val)=>{return val.adminemail===email && val.adminpassword===password});
        if(data.length>0){
-        nav("/adminDashboard");
+        nav("/AdminDash");
         sessionStorage.setItem("user",email)
        }
        else{  
